@@ -1,0 +1,43 @@
+{
+  "phone_rules": {
+    "IN": {
+      "country_name": "India",
+      "length": 10,
+      "regex": "^[6-9]\\d{9}$"
+    },
+    "SG": {
+      "country_name": "Singapore",
+      "length": 8,
+      "regex": "^[89]\\d{7}$"
+    },
+    "US": {
+      "country_name": "United States",
+      "length": 10,
+      "regex": "^\\d{10}$"
+    },
+    "UK": {
+      "country_name": "United Kingdom",
+      "length": 10,
+      "regex": "^7\\d{9}$"
+    }
+  },
+  "date_formats": [
+    "%Y-%m-%d",
+    "%d-%m-%Y",
+    "%m/%d/%Y",
+    "%Y/%m/%d",
+    "%d/%m/%Y %H:%M:%S"
+  ],
+  "processing": {
+    "chunk_size": 5000,
+    "required_columns": [
+      "order_id",
+      "product_name",
+      "amount",
+      "payment_mode",
+      "phone",
+      "country_code",
+      "transaction_date"
+    ]
+  }
+}

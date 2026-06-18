@@ -1,0 +1,7 @@
+order_id,product_name,amount,payment_mode,phone,country_code,transaction_date
+101,Laptop,1200,Credit Card,9876543210,IN,2023-10-15
+102,Mouse,25,UPI,81234567,SG,15-10-2023
+103,Keyboard,45,Cash,123,IN,2023/10/15
+104,Monitor,200,Debit Card,9123456789,IN,invalid-date
+105,Webcam,60,UPI,,SG,2023-10-15
+106,Cable,10,Cash,81112222,SG,2023-10-15 10:30:00
