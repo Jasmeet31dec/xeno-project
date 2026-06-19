@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FileUpload } from './components/FileUpload';
 import { Dashboard } from './components/Dashboard';
-import { uploadCSV, getJobStatus } from './services/api';
+import { uploadFile, getJobStatus } from './services/api';
 import { ShieldCheck, RefreshCw } from 'lucide-react';
 
 function App() {
