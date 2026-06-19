@@ -1,17 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { Upload, FileType, AlertCircle, CheckCircle2 } from 'lucide-react';
 
-interface FileUploadProps {
-  onUploadSuccess: (jobId: string) => void;
-  isLoading: boolean;
-}
-
-export const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess, isLoading }) => {
+export const FileUpload = ({ onUploadSuccess, isLoading }) => {
   const [dragActive, setDragActive] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState(null);
+  const fileInputRef = useRef(null);
 
-  const handleDrag = (e: React.DragEvent) => {
+  const handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === "dragenter" || e.type === "dragover") {
@@ -21,16 +16,16 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess, isLoadi
     }
   };
 
-  const processFile = async (file: File) => {
+  const processFile = async (file) => {
     if (!file.name.endsWith('.csv')) {
       setError("Please upload a CSV file");
       return;
     }
     setError(null);
-    onUploadSuccess(file as any);
+    onUploadSuccess(file);
   };
 
-  const handleDrop = (e: React.DragEvent) => {
+  const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -39,7 +34,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess, isLoadi
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       processFile(e.target.files[0]);
     }
@@ -65,14 +60,14 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess, isLoadi
           onChange={handleChange}
           disabled={isLoading}
         />
-        
+
         <div className="flex flex-col items-center">
           <div className="p-4 bg-indigo-100 rounded-full mb-4">
             <Upload className="w-8 h-8 text-primary" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Upload transaction dataset</h3>
           <p className="text-slate-500 mb-6">Drag and drop your CSV file here, or click to browse</p>
-          
+
           <div className="flex items-center gap-4 text-sm text-slate-400">
             <div className="flex items-center gap-1">
               <FileType size={16} /> <span>CSV format</span>
@@ -83,7 +78,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess, isLoadi
           </div>
         </div>
       </div>
-      
+
       {error && (
         <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-lg flex items-center gap-2">
           <AlertCircle size={18} />

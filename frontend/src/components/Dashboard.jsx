@@ -1,13 +1,8 @@
 import React from 'react';
 import { Download, CheckCircle2, XCircle, FileText, Loader2, Database } from 'lucide-react';
-import { JobStatus, getDownloadUrl } from '../services/api';
+import { getDownloadUrl } from '../services/api';
 
-interface DashboardProps {
-  jobId: string;
-  status: JobStatus;
-}
-
-export const Dashboard: React.FC<DashboardProps> = ({ jobId, status }) => {
+export const Dashboard = ({ jobId, status }) => {
   if (status.status === 'processing') {
     return (
       <div className="flex flex-col items-center justify-center p-12 text-center">
@@ -28,8 +23,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ jobId, status }) => {
     );
   }
 
-  const validPercent = status.total_records 
-    ? Math.round((status.valid_records! / status.total_records) * 100) 
+  const validPercent = status.total_records
+    ? Math.round((status.valid_records / status.total_records) * 100)
     : 0;
 
   return (

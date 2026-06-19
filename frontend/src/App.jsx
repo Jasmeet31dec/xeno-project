@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { FileUpload } from './components/FileUpload';
 import { Dashboard } from './components/Dashboard';
-import { uploadFile, getJobStatus, JobStatus } from './services/api';
+import { uploadCSV, getJobStatus } from './services/api';
 import { ShieldCheck, RefreshCw } from 'lucide-react';
 
 function App() {
-  const [jobId, setJobId] = useState<string | null>(null);
-  const [status, setStatus] = useState<JobStatus | null>(null);
+  const [jobId, setJobId] = useState(null);
+  const [status, setStatus] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
-  const handleUpload = async (file: any) => {
+  const handleUpload = async (file) => {
     setIsUploading(true);
     try {
       const id = await uploadFile(file);
@@ -23,7 +23,7 @@ function App() {
   };
 
   useEffect(() => {
-    let interval: number;
+    let interval;
     if (jobId && (!status || status.status === 'processing')) {
       interval = setInterval(async () => {
         try {
@@ -57,7 +57,7 @@ function App() {
               <span className="text-xl font-bold tracking-tight text-slate-900">TransactValidate <span className="text-primary">Pro</span></span>
             </div>
             {jobId && (
-              <button 
+              <button
                 onClick={reset}
                 className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-primary transition-colors"
               >
@@ -76,7 +76,7 @@ function App() {
                 Process Your Transaction Data with Confidence
               </h1>
               <p className="text-lg text-slate-600">
-                AI-powered validation for international phone formats, multi-country dates, and schema integrity. 
+                AI-powered validation for international phone formats, multi-country dates, and schema integrity.
                 Automatically splits large files into manageable chunks.
               </p>
             </div>
